@@ -1,0 +1,10 @@
+.taskList {
+  padding-top: 40px;
+}
+.taskItem {
+  list-style-type: none;
+  background-color: lightgoldenrodyellow;
+  color: black;
+  padding: 20px;
+  margin: 20px;
+}
