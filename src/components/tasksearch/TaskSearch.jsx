@@ -1,15 +1,25 @@
 import styles from "./tasksearch.module.css";
 
-const TaskSearch = () => {
+const TaskSearch = ({ tasks, onAddTasks }) => {
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    const newTask = e.target.elements.taskInput.value; // Get the value of the input field
+    if (newTask.trim() !== "") {
+      onAddTasks([...tasks, newTask]); // Add the new task to the tasks array
+      e.target.reset(); // Clear the input field after submitting
+    }
+  };
+
   return (
-    <div className="task-search">
+    <form onSubmit={handleAddTask}>
       <input
         className={styles.taskSearchInput}
         type="text"
+        name="taskInput"
         placeholder="write a task"
       />
-      <button>Add task</button>
-    </div>
+      <button type="submit">Add task</button>
+    </form>
   );
 };
 

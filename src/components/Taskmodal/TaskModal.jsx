@@ -1,26 +1,30 @@
 import TaskItem from "../TaskItem/TaskItem";
 import TaskSearch from "../tasksearch/TaskSearch";
 import styles from "./taskmodal.module.css";
-import PropTypes from "prop-types";
+import { useState } from "react";
 
-const TaskModal = ({ tasks }) => {
+const TaskModal = () => {
+  const [tasks, setTasks] = useState([]);
+
+  const handleEditTask = (updatedTasks) => {
+    setTasks(updatedTasks);
+  };
+
+  const handleDeleteTask = (updatedTasks) => {
+    setTasks(updatedTasks);
+  };
+
   return (
     <div className={styles.taskModal}>
       <h1>To Do Tasks List</h1>
-      <TaskSearch />
-      <TaskItem tasks={tasks} />
+      <TaskSearch tasks={tasks} onAddTasks={setTasks} />
+      <TaskItem
+        tasks={tasks}
+        onEditTask={handleEditTask}
+        onDeleteTask={handleDeleteTask}
+      />
     </div>
   );
-};
-
-// Define prop validation using PropTypes
-TaskModal.propTypes = {
-  tasks: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-    })
-  ).isRequired,
 };
 
 export default TaskModal;
